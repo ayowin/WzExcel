@@ -196,7 +196,7 @@ bool WzExcel::insertValue(const int &row, const int &column, const QString &valu
 
 bool WzExcel::save()
 {
-    qDebug()<<"sava()";
+    qDebug()<<"save()";
 
     if(filename.isEmpty())
     {
@@ -213,14 +213,14 @@ bool WzExcel::save()
     else
     {
         //文件不存在则另存为
-        this->savaAs(filename);
+        this->saveAs(filename);
     }
     return true;
 }
 
-bool WzExcel::savaAs(const QString &filename)
+bool WzExcel::saveAs(const QString &filename)
 {
-    qDebug()<<"savaAs()";
+    qDebug()<<"saveAs()";
 
     if(filename.isEmpty())
     {

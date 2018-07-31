@@ -27,7 +27,7 @@
  *              }
  *          }
  *          w.save();                                          //保存
- *          w.savaAs("D:/hello1.xlsx");                        //另存为
+ *          w.saveAs("D:/hello1.xlsx");                        //另存为
  *      }
  *
  *  说明：创建对象需传入绝对路径。
@@ -62,7 +62,7 @@ public:
     bool save();
 
     //另存为，成功返回true，失败返回false
-    bool savaAs(const QString &filename);
+    bool saveAs(const QString &filename);
 
 private:
     QString filename; //文件名
