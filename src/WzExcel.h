@@ -36,21 +36,31 @@
 class WzExcel
 {
 public:
+    WzExcel();
     //传入需要操作的Excel文件的【绝对路径】
-    WzExcel(const QString &filename);
+    WzExcel(const QString &fileName);
     ~WzExcel();
 
-    //打开,不存在则创建,成功返回true，失败返回false
-    bool open();
+    //设置文件名
+    void setFileName(const QString fileName);
+
+    //打开,不存在则【新建一个工作簿(保存时以传入时的文件名保存)】,成功返回true，失败返回false
+    bool open(bool visible=false,bool displayAlerts=false);
+
+    //关闭
+    void close();
+
+    //设置visible，true: 可视，false: 隐藏
+    bool setVisible(bool visible);
 
     //设置当前工作表,成功返回true，失败返回false
-    bool setCurrentWorkSheet(const QString &sheetname=NULL);
+    bool setCurrentWorkSheet(const QString &sheetName=NULL);
 
     //创建工作表，成功返回true，失败返回false
-    bool createWorkSheet(const QString &sheetname);
+    bool createWorkSheet(const QString &sheetName);
 
     //删除工作表，成功返回true，失败返回false
-    bool deleteWorkSheet(const QString &sheetname);
+    bool deleteWorkSheet(const QString &sheetName);
 
     //获得指定位置的单元格内容,成功返回该值，失败返回NULL
     QString getValue(const int &row,const int &column);
@@ -62,10 +72,15 @@ public:
     bool save();
 
     //另存为，成功返回true，失败返回false
-    bool saveAs(const QString &filename);
+    bool saveAs(const QString &fileName);
 
 private:
-    QString filename; //文件名
+    void release();
+
+private:
+    QString fileName; //文件名
+
+    bool isOpened;
 
     QAxObject *excel; //excel对象
     QAxObject *workBooks; //所有工作簿对象
